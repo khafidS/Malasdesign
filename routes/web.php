@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\Template\TemplateController;
 use App\Http\Controllers\Admin\Template\TemplateDetailController;
 use App\Http\Controllers\Admin\Template\TemplateCategoryController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,26 +25,27 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->group(function()
-    {
-        Route::resource('templates', TemplateController::class);
-        Route::get('/template-details/{id}', [TemplateDetailController::class, 'templateDetail'])
-            ->name('template-details.detail');
-        Route::resource('template_details', TemplateDetailController::class);
-        Route::resource('template-category', TemplateCategoryController::class);
+Route::prefix('admin')->group(function () {
+    Route::resource('templates', TemplateController::class);
+    Route::get('/template-details/{id}', [TemplateDetailController::class, 'templateDetail'])
+        ->name('template-details.detail');
+    Route::resource('template_details', TemplateDetailController::class);
+    Route::resource('template-category', TemplateCategoryController::class);
 
-        Route::resource('categories', CategoryController::class);
-    });
+    Route::resource('categories', CategoryController::class);
+});
 
 
 Route::prefix('admin')
     ->namespace('Admin')
-    ->group(function()
-    {
+    ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
     });
 
+Route::get('/key', function () {
+    return Str::random(32);
+});
 
 
 

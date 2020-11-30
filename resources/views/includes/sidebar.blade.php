@@ -104,6 +104,21 @@
         <span>Tambah Category</span></a>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Transaction
+    </div>
+  
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('transactions.index')}}">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Transactions</span></a>
+    </li>
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
 

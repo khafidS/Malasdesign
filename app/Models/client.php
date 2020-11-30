@@ -10,4 +10,21 @@ class client extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
+    protected $fillable =
+    [
+        'name',
+        'email',
+        'photo',
+    ];
+
+    protected $hidden =
+    [
+
+    ];
+
+    public function transaction()
+    {
+        return $this->hasMany(transaction::class, 'client_id');
+    }
 }

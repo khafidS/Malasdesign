@@ -19,6 +19,17 @@ use Illuminate\Validation\Rules\Exists;
 
 class TemplateController extends Controller
 {
+    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,9 +83,10 @@ class TemplateController extends Controller
         $cat1 = $request->category_0;
         $cat2 = $request->category_1;
         $templates->categories()->attach([$cat1,$cat2]);
-
+        
+        $filename = $templates->slug . ".png";
         $photo = $request->file('photo')->store(
-                    'assets/templates', 'public'
+                    'assets/templates', $filename , 'public'
                 );
         $templates->templateDetail()->create([
             'photo' => $photo,

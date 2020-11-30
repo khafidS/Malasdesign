@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Template;
+namespace App\Http\Controllers\Admin\Transaction;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\TemplateDetailRequest;
-use App\Models\template_detail;
-use App\Models\template;
-use App\Models\category;
 
-class TemplateDetailController extends Controller
+class TransactionController extends Controller
 {
     
     /**
@@ -21,7 +17,7 @@ class TemplateDetailController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -29,8 +25,7 @@ class TemplateDetailController extends Controller
      */
     public function index()
     {
-        
-
+        return view('pages.admin.transactions.index');
     }
 
     /**
@@ -62,14 +57,7 @@ class TemplateDetailController extends Controller
      */
     public function show($id)
     {
-        
-        // dd($items);
-        $templates = template::findOrFail($id);
-        $items = $templates->templateDetail()->get();
-        
-        return view('pages.admin.templates.show-image', [
-            'items' => $items
-            ]);
+        //
     }
 
     /**
@@ -104,20 +92,5 @@ class TemplateDetailController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function templateDetail($id)
-    {
-        $templates = template::findOrFail($id);
-        $categories = $templates->categories()->get(); //category keluar
-
-        $items = $templates->templateDetail()->get(); //deskripsi keluar
-        // dd($items);
-
-        return view('pages.admin.templates.show', [
-            'categories' => $categories,
-            'items' => $items
-        ]);
-        // dd($categories);
     }
 }

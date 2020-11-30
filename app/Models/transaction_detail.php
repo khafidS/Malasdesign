@@ -10,4 +10,16 @@ class transaction_detail extends Model
 {
     use SoftDeletes;
     use HasFactory;
+
+    protected $fillable =
+    [
+        'transaction_id', 'template_id'
+    ];
+
+    protected $hidden =
+    [
+
+    ];
+
+    
 }

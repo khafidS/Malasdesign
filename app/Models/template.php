@@ -29,4 +29,9 @@ class template extends Model
         return $this->hasMany(template_detail::class, 'template_id');
     }
 
+    public function transaction()
+    {
+        return $this->hasMany(transaction::class, 'template_id');
+    }
+
 }

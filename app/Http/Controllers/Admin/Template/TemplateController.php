@@ -85,7 +85,7 @@ class TemplateController extends Controller
         $templates->categories()->attach([$cat1,$cat2]);
         
         $filename = $templates->slug . ".png";
-        $photo = $request->file('photo')->store(
+        $photo = $request->file('photo')->storeAs(
                     'assets/templates', $filename , 'public'
                 );
         $templates->templateDetail()->create([

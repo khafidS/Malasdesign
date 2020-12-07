@@ -27,4 +27,9 @@ class client extends Model
     {
         return $this->hasMany(transaction::class, 'client_id');
     }
+
+    public function order()
+    {
+        return $this->hasMany(order::class, 'client_id');
+    }
 }

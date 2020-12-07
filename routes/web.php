@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\Template\TemplateDetailController;
 use App\Http\Controllers\Admin\Template\TemplateCategoryController;
 
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Client\ClientController;
+use App\Http\Controllers\Admin\Client\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
 
 use App\Http\Controllers\Admin\Transaction\TransactionController;
@@ -25,7 +27,7 @@ use Illuminate\Support\Str;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('homez');
@@ -48,6 +50,9 @@ Route::prefix('admin')
     Route::resource('transactions', TransactionController::class);
     Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard');
+
+    Route::resource('clients', ClientController::class);
+    Route::resource('orders', OrderController::class);
 });
 
 

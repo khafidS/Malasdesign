@@ -13,8 +13,10 @@ class order extends Model
 
     protected $fillable =
     [
-      'client_id',  
-      'template_id',  
+      'user_id',  
+      'template_id',
+      'tanggal_order',
+      'order_status',  
       'nama_lengkap',  
       'tanggal_lahir',  
       'agama',  
@@ -47,5 +49,15 @@ class order extends Model
     public function transaction()
     {
         return $this->hasOne(transaction::class, 'order_id');
+    }
+
+    public function user()
+    {
+      return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function template()
+    {
+      return $this->belongsTo(template::class, 'template_id', 'id');
     }
 }

@@ -37,6 +37,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
+        
         $items = template::all();
         return view('pages.admin.templates.index')->with([
             'items' => $items

@@ -34,4 +34,9 @@ class template extends Model
         return $this->hasMany(transaction::class, 'template_id');
     }
 
+    public function order()
+    {
+        return $this->hasOne(order::class, 'template_id');
+    }
+
 }

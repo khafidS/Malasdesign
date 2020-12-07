@@ -35,10 +35,10 @@ Route::get('/', function () {
 
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home')
-    ->middleware(['auth','user']);
+    ->middleware(['auth','user','verified']);
 
 Route::prefix('admin')
-    ->middleware(['auth','admin'])
+    ->middleware(['auth','admin','verified'])
     ->group(function () {
     Route::resource('templates', TemplateController::class);
     Route::get('/template-details/{id}', [TemplateDetailController::class, 'templateDetail'])
